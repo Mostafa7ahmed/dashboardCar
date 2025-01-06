@@ -29,7 +29,6 @@ export class CarService {
 
   async getTableData(filter?: { name?: string; price_day?: number }): Promise<any[]> {
     try {
-      // إنشاء استعلام Supabase
       let query = this.supabase.from('Car').select('*');
         if (filter) {
         if (filter.name) {

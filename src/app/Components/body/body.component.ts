@@ -12,7 +12,7 @@ declare var bootstrap: any;
 })
 export class BodyComponent {
   carForm: FormGroup;
-  isLoading = false; 
+  isLoading = true; 
   submissionMessage = ''; 
   brantcars: any[] = [];
 

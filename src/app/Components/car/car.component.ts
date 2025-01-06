@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CarService } from '../../Core/services/car.service';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-car',
@@ -44,6 +45,10 @@ export class CarComponent  implements OnInit{
       try {
         await this.supabaseService.addCar(this.carForm.value);
         this.loading =false;
+        const modalElement = document.getElementById('carModal');
+
+        const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance.hide();
             this.loadData();
 
         console.log('Car added successfully');
