@@ -1,1 +1,136 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+    --brown :#bc792b;
+    --bggreen:#F3FFEF;
+    --brown2:#b88f2ff8;
+
+    --fwhite:#F8FBF7;
+    --error :#B90000;
+    --color_link :#000000;
+    --color_border:#C6D1DC;
+    --white: #FFFFFF;
+    --gray1:#C6D1DC;
+    --gray2: #1F28328F;
+}
+ul{
+    margin: 0 !important;
+}
+ ul li{
+    list-style: none;
+}
+a{
+    text-decoration: none !important;
+}
+
+.inputSearch {
+    padding: 6px 14px;
+    width: 200px;
+    background-color: transparent;
+    border: 0.5px solid #bc792b;
+    outline: none;
+    border-radius: 10px;
+  
+  }
+  .btn {
+    color: #fff;
+    border-radius: 10px;
+    margin: 0 10px;
+  }
+  .btnsearch {
+    background-color: #b88e2f;
+
+    color: #fff;
+    border-radius: 10px;
+    margin: 0 10px;
+    padding: 5px 20px ;
+  }
+
+
+  .headerCar h2{
+    color: #bc792b;
+    font-family: "Poppins", Sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.7em;
+}
+.cardCar{
+    
+    border: none;
+    border-radius: 20px;
+    width: 350px !important;
+}
+.cardCar img{
+    border-radius: 15px;
+    width: 100%;
+
+}
+
+.Content h2{
+     
+    color: #000;
+    font-family: "Poppins", Sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.7em;
+}
+.Content h5{
+    color: #bc792b;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 8px 0;
+}
+.icons p i{
+    color: #fff;
+    padding: 5px;
+    background-color: #bc792b;
+    border-radius: 5px;
+}
+.allCars .btn{
+    background-color: #bc792b;
+    padding: 10px 30px;
+    color: #fff;
+    outline: none;
+    border-radius: 7px;
+}
+.contact .iconContact{
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #bc792b;
+    width: 50px;
+    height: 50px;
+
+}
+.error{
+    color: #B90000;
+}
+.contact .iconContact i{
+ font-size: 20px;
+ color: #fff;
+
+}
+.iconContact{
+    cursor: pointer;
+}
+@media (max-width: 600px) {
+    .headerCar {
+        flex: none;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .sealct{
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px;
+    }
+    .cardCar{
+    
+        border: none;
+        border-radius: 20px;
+        width: 100% !important;
+    }
+    .car{
+        padding: 10px !important;
+    }
+}

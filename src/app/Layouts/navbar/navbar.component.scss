@@ -1,0 +1,96 @@
+
+.rightNav ul li{
+    margin-right: 40px;
+}
+.rightNav ul li a{
+    color: black;
+    font-weight: 500;
+}
+.rightNav ul li .active-link{
+    color: #bc792b;
+}
+.icon i{
+
+    color: #bc792b;
+    display: none;
+}
+.logout{
+    background-color: #bc792b;
+    color: #fff !important;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.logout:focus{
+    background-color: #bc792b;
+}
+.offcanvas{
+
+    width: 70%;
+    background-color: #bc792b;
+    position: fixed;
+    display: flex;  
+    flex-direction: column;
+
+    gap: 10px;
+
+    height: 100vh;
+
+    z-index: 555555;
+}
+.offcanvas .btn-close{
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    transition: all 0.8s ease;
+    &:hover{
+        color: #000000;
+        transform: rotate(360deg);
+    }
+    
+}
+.offcanvas .routeLink {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-top: 80px;
+    gap: 50px !important;
+    color: white;
+}
+.offcanvas .routeLink  li{
+    margin: 20px 0  !important;
+}
+
+.offcanvas .links  li a{
+    color: #fff;
+}
+.offcanvas .links  li a.active{
+    color: #bc792b;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 5px 20px;
+}
+
+
+@media (max-width :900px){
+ 
+    .rightNav  ul {
+        display: none !important;
+    }
+    .icon i{
+
+        color: #bc792b;
+        display: flex;
+    }
+}
+
+@media (max-width :900px){
+    .leftNav img{
+        width: 60px !important;
+    }
+}

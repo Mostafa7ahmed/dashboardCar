@@ -1,0 +1,79 @@
+.login{
+
+    height: 100vh;
+    background-color: var(--brown2);
+}
+.login .card{
+    width: 400px;
+}
+.logo h3{
+    color: var(--brown);
+}
+
+.btnModal{
+    padding: 10px 20px;
+    background-color: var(--brown);
+    box-shadow: none;
+    border: 1px solid var(--fwhite);
+    color: white;
+
+}
+.btnModal:focus{
+    border: 1px solid var(--brown);
+}
+.btn-close{
+    background: var(--brown);
+}
+
+.relative {
+    position: relative;
+  }
+  
+  #label-input {
+    transition: all 0.1s ease-in-out;
+    position: absolute;
+    top: 30%;
+    left: 18px;
+    transform: scale(0.95);
+    opacity: 1;
+    pointer-events: none;
+    color: #5f5d5dee;
+  }
+  
+  .input-base {
+    border-radius: 6px;
+  }
+  
+ .inputFloating:focus ~ label#label-input,
+.inputFloating:not(:placeholder-shown) ~ #label-input {
+    top: -27% !important;
+    left: 4px !important;
+    transform: scale(0.8);
+    background: white;
+    color: var(--gray2);
+    font-size: 16px;
+    padding: 0px 18px;
+    opacity: 1;
+  }
+  
+  .inputFloating {
+    transition: outline 0.2s ease;
+    font-size: 1rem;
+    outline-color: var(--button-text);
+    outline: unset;
+    border: 1px solid var(--gray1);
+    padding: 17px 10px 10px 17px;
+    width: 100%;
+
+    border-radius: 8px ;
+
+
+  }
+
+  
+.form-control:focus{
+    padding: 10px;
+    border: 1px solid var(--gray2)  !important;
+    box-shadow: none !important;
+
+}

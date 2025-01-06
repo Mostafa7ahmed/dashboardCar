@@ -1,0 +1,42 @@
+<nav class="container-fluid nav-bar  px-5 py-1 d-flex justify-content-between align-items-center gap-4  m-0 bg-white">
+    <div class="leftNav" routerLink="/Home" >
+        <img src="Images/IMG_2751.PNG" alt="" width="100" loading="lazy">
+
+    </div>
+    <div class="rightNav  d-flex  gap-2 align-items-center">
+        <ul class="d-flex  "> 
+            <li><a routerLink="/car" routerLinkActive="active-link">Car</a></li>
+            <li><a routerLink="/body" routerLinkActive="active-link">Body</a></li>
+            <li><a routerLink="/brand" routerLinkActive="active-link">Brand</a></li>
+            <li    ><button class="text-white btn logout"  (click)="logout()">Log out <i class="fa-solid fa-right-from-bracket"></i></button></li>
+
+   
+        </ul>
+        <div class="icon">
+            <i class="fa-solid fa-bars" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+        </div>
+
+
+    </div>
+
+    
+</nav>
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+
+
+    <div class="routeLink">
+        <ul class="links m-0">
+            <li><a routerLink="/car" routerLinkActive="active">Car</a></li>
+            <li><a routerLink="/body" routerLinkActive="active">Body</a></li>
+            <li><a routerLink="/brand" routerLinkActive="active">Brand</a></li>
+            <li><a  routerLinkActive="active-link">Log out <i class="fa-solid fa-right-from-bracket"></i></a></li>
+
+   
+        </ul>
+    </div>
+
+  </div>

@@ -1,0 +1,203 @@
+<div class="car  bg-light m-4 shadow-sm rounded-4">
+    <div class="infoShow d-flex justify-content-between align-items-center  flex-wrap my-4 p-3">
+
+        <div class="SearchUser ">
+            <input type="text" class="inputSearch" placeholder="ُEnter Name Car  Search " />
+        </div>
+
+        <button class="btn btnsearch" type="button" data-bs-toggle="modal" data-bs-target="#carModal">Add Car <i class="fa-solid fa-plus"></i> </button>
+
+    </div>
+    @if(!loading){
+        <div class="allcars d-flex   p-3  flex-wrap gap-2 my-5">
+            @for (car of tableData; track car._id) {
+              <div class="cardCar p-3 shadow-sm  mb-3  ">
+                  <img src="Images/Q3-x1-qygadzafd20tzx0bj6vykwr33j4lptq80h7x7q2r98.webp" alt="">
+      
+                  <div class="Content  p-3">
+                      <h2></h2>
+      
+                      <h5>AED 250/Dey</h5>
+                      <p>dddddddddddddddddddddd</p>
+                      <div class="icons d-flex justify-content-between align-items-center gap-2">
+                          <p><i class="fa-solid fa-car mx-2"></i> <span>BMW</span></p>
+                          <p><i class="fa-solid fa-door-closed  mx-2"></i> <span>BMW</span></p>
+                          <p><i class="fa-solid fa-couch  mx-2"></i> <span>BMW</span></p>
+      
+      
+                      </div>
+      
+                      <div class="contact  py-3 d-flex justify-content-between align-items-center">
+                          <a routerLink="/car-details" class="iconContact">
+                              <i class="fa-solid fa-pen-to-square"></i>
+                          </a>
+      
+                          <a routerLink="/car-details" class="iconContact">
+                              <i class="fa-solid fa-trash"></i>
+                          </a>
+                      </div>
+                  </div>
+      
+              </div>
+      
+              
+            }
+  
+  
+  
+  
+      </div>
+
+    }
+    @if (loading) {
+      <div class="d-flex w-100 justify-content-center align-items-center p-4">
+        <div class="loader">
+        </div>
+      </div>
+    }
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="carModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-labelledby="carModal" aria-hidden="false">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" >Add Brand</h1>
+          <button type="button" class="btn-close closeModel d-flex justify-content-center align-items-center" data-bs-dismiss="modal" aria-label="Close">
+            <i class="fas fa-close fs-5 "></i>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+
+                <div class="position-relative mb-3">
+                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="name" type="text" >
+                    <label id="label-input">Car Name</label>
+                    @if (carForm.get('name')?.invalid && carForm.get('name')?.touched ) {
+                        <div  class="error">
+                            Name is required.
+                          </div>
+                    }
+                </div>
+       
+                <div class="position-relative mb-3">
+                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="price_day" type="number" >
+                    <label id="label-input">Price in Day</label>
+                    @if (carForm.get('price_day')?.invalid && carForm.get('price_day')?.touched ) {
+                        <div  class="error">
+                            Price  Day is required.
+                          </div>
+                    }
+                </div>
+           
+                <div class="position-relative mb-3">
+                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="price_week" type="number" >
+                    <label id="label-input">Price in Week</label>
+                    @if (carForm.get('price_week')?.invalid && carForm.get('price_week')?.touched ) {
+                        <div  class="error">
+                            Price  Week is required.
+                          </div>
+                    }
+                </div>
+           
+                <div class="position-relative mb-3">
+                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="Price_month" type="number" >
+                    <label id="label-input">Price in Month</label>
+                    @if (carForm.get('Price_month')?.invalid && carForm.get('Price_month')?.touched ) {
+                        <div  class="error">
+                            Price  Month is required.
+                          </div>
+                    }
+                </div>
+            
+                <div class="position-relative mb-3">
+                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="color" type="text" >
+                    <label id="label-input"> Color </label>
+                    @if (carForm.get('color')?.invalid && carForm.get('color')?.touched ) {
+                        <div  class="error">
+                            Color is required.
+                          </div>
+                    }
+                </div>
+             
+                <div class="position-relative mb-3">
+                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="brand" type="text" >
+                    <label id="label-input"> Brand </label>
+                    @if (carForm.get('brand')?.invalid && carForm.get('brand')?.touched ) {
+                        <div  class="error">
+                            Brand is required.
+                          </div>
+                    }
+                </div>
+                          
+                <div class="position-relative mb-3">
+                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="chair_num" type="number" >
+                    <label id="label-input"> Chiar Number </label>
+                    @if (carForm.get('chair_num')?.invalid && carForm.get('chair_num')?.touched ) {
+                        <div  class="error">
+                            Chiar Number is required.
+                          </div>
+                    }
+                </div>
+                <div class="position-relative mb-3">
+                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="door_num" type="number" >
+                    <label id="label-input"> Door Number </label>
+                    @if (carForm.get('door_num')?.invalid && carForm.get('door_num')?.touched ) {
+                        <div  class="error">
+                            Door Number is required.
+                          </div>
+                    }
+                </div>
+                <div class="position-relative mb-3">
+                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="type" type="text" >
+                    <label id="label-input"> Type Number </label>
+                    @if (carForm.get('type')?.invalid && carForm.get('type')?.touched ) {
+                        <div  class="error">
+                            Type Number is required.
+                          </div>
+                    }
+                </div>
+                <div class="mb-3">
+                             
+                    <label   class="form-label" for="image"> Brand Photo</label>
+                    <input class="form-control"  id="image" formControlName="Image" type="file"  multiple />
+                    @if (carForm.get('Image')?.invalid && carForm.get('Image')?.touched ) {
+                        <div  class="error">
+                            Image URL is required.
+                          </div>
+                    }
+               
+                  
+                </div>
+
+                <div class="modal-footer px-0 mx-0">
+                    <button type="submit"  class="btn  btnModal "[disabled]="loading || carForm.invalid">
+                        @if(!loading){
+                            <span>Add Car</span>
+                        }
+                        @if(loading){
+                            <div  class="loading">
+                                Loading...
+                              </div>
+                        }
+                    </button>
+    
+                    <button type="button" class="btn btnModal" data-bs-dismiss="modal">Close</button>
+
+                </div>
+
+              </form>
+              
+        </div>
+    
+      </div>
+    </div>
+  </div>

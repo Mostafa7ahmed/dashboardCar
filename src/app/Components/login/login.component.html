@@ -1,0 +1,45 @@
+<div class="login d-flex justify-content-center align-items-center">
+    <div class="card shadow-sm rounded-3 p-3" >
+        <div class="logo d-flex justify-content-between  align-items-center">
+            <img src="Images/IMG_2751.PNG" alt="" width="100" loading="lazy">
+            <h3>Sign In </h3>
+        </div>
+
+        <form class="Form mt-4">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+                <div class="position-relative mb-3">
+                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="email" type="email" >
+                    <label id="label-input">Email</label>
+       
+                </div>
+        
+
+                <div class="position-relative mb-3">
+                    <input class="input-cal input-base inputFloating" placeholder=""  type="password"  formControlName="password">
+                    <label id="label-input">Password</label>
+       
+                </div>
+         
+
+                <div class="modal-footer px-0 mx-0">
+                    <button type="submit"  class="btn  btnModal "[disabled]="isLoading || loginForm.invalid">
+                        @if(!isLoading){
+                            <span>Sign In</span>
+                        }
+                        @if(isLoading){
+                            <div  class="loading">
+                                Loading...
+                              </div>
+                        }
+                    </button>
+    
+
+                </div>
+
+              </form>
+
+        </form>
+
+    </div>
+</div>
