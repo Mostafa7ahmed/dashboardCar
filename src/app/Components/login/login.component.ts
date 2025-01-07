@@ -1,3 +1,4 @@
+import { ToastsService } from './../../Core/services/toasts.service';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -18,9 +19,9 @@ export class LoginComponent {
   isLoading = false;
   message = ''; 
 
-  constructor(private fb: FormBuilder, private _loginService: LoginService , private _Router:Router) {
+  constructor(private fb: FormBuilder, private _loginService: LoginService , private _Router:Router , private _ToastsService:ToastsService) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]], // Added email validator
+      email: ['', [Validators.required, Validators.email]], 
       password: ['', Validators.required],
     });
   }
@@ -40,6 +41,7 @@ export class LoginComponent {
 
       } else {
         this.message = 'Login successful!';
+        this._ToastsService.showToast("success",this.message)
          localStorage.setItem("UserAuth",data.session.access_token)
         this._Router.navigate(["/car"])
       }

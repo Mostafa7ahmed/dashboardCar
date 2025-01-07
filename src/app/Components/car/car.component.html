@@ -1,203 +1,285 @@
-<div class="car  bg-light m-4 shadow-sm rounded-4">
-    <div class="infoShow d-flex justify-content-between align-items-center  flex-wrap my-4 p-3">
-
-        <div class="SearchUser ">
-            <input type="text" class="inputSearch" placeholder="ُEnter Name Car  Search " />
-        </div>
-
-        <button class="btn btnsearch" type="button" data-bs-toggle="modal" data-bs-target="#carModal">Add Car <i class="fa-solid fa-plus"></i> </button>
-
+<div class="car bg-light m-4 shadow-sm rounded-4">
+    <div class="infoShow d-flex justify-content-between align-items-center flex-wrap my-4 p-3">
+      <div class="SearchUser">
+        <input type="text" class="inputSearch" placeholder="ُEnter Name Car Search" [(ngModel)]="textSearch" />
+      </div>
+      <button (click)="GetData()" class="btn btnsearch" type="button" data-bs-toggle="modal" data-bs-target="#carModal">
+        Add Car <i class="fa-solid fa-plus"></i>
+      </button>
     </div>
     @if(!loading){
-        <div class="allcars d-flex   p-3  flex-wrap gap-2 my-5">
-            @for (car of tableData; track car._id) {
-              <div class="cardCar p-3 shadow-sm  mb-3  ">
-                  <img src="Images/Q3-x1-qygadzafd20tzx0bj6vykwr33j4lptq80h7x7q2r98.webp" alt="">
-      
-                  <div class="Content  p-3">
-                      <h2>{{car.name}}</h2>
-      
-                      <h5>AED 250/Dey</h5>
-                      <p>dddddddddddddddddddddd</p>
-                      <div class="icons d-flex justify-content-between align-items-center gap-2">
-                          <p><i class="fa-solid fa-car mx-2"></i> <span>BMW</span></p>
-                          <p><i class="fa-solid fa-door-closed  mx-2"></i> <span>BMW</span></p>
-                          <p><i class="fa-solid fa-couch  mx-2"></i> <span>BMW</span></p>
-      
-      
-                      </div>
-      
-                      <div class="contact  py-3 d-flex justify-content-between align-items-center">
-                          <a routerLink="/car-details" class="iconContact">
-                              <i class="fa-solid fa-pen-to-square"></i>
-                          </a>
-      
-                          <a routerLink="/car-details" class="iconContact">
-                              <i class="fa-solid fa-trash"></i>
-                          </a>
-                      </div>
-                  </div>
-      
+      <div class="allcars d-flex p-3 flex-wrap gap-2 my-5">
+        @if(carData.length > 0){
+          @for (car of carData | search : textSearch ; track car.id) {
+            <div class="cardCar p-3 shadow-sm mb-3 bg-white">
+              <img [src]="car.images" alt="" class="rounded-3" />
+              <div class="Content p-3">
+                <h2 class="mt-2">{{car.name}}</h2>
+                <h4>{{car.price_day}}/Day AED</h4>
+                <div class="d-flex justify-content-between align-items-center flex-wrap my-2">
+                  <h5>{{car.price_week}}/Week AED</h5>
+                  <h5>{{car.price_month}}/Month AED</h5>
+                </div>
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                  <p>Color: <span>{{car.color}}</span></p>
+                  <p>Body: <span>{{car.body}}</span></p>
+                </div>
+                <div class="icons d-flex justify-content-between align-items-center gap-2">
+                  <p><i class="fa-solid fa-car mx-2"></i> <span>{{car.brand}}</span></p>
+                  <p><i class="fa-solid fa-door-closed mx-2"></i> <span>{{car.door_num}}</span></p>
+                  <p><i class="fa-solid fa-couch mx-2"></i> <span>{{car.chair_num}}</span></p>
+                </div>
+                <div class="contact py-3 d-flex justify-content-between align-items-center">
+                  <a (click)="loadCarData(car.id)" data-bs-toggle="modal" data-bs-target="#carModalEdit" class="iconContact">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </a>
+                  <a (click)="onDeleteCar(car.id)" class="iconContact">
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
+                </div>
               </div>
-      
-              
-            }
-  
-  
-  
-  
+            </div>
+          }
+        }
+        @else {
+          <div class="notFound">
+            <img src="Images/order-a-car.png" alt="" />
+            <h3>Not Found Car</h3>
+          </div>
+        }
       </div>
-
     }
     @if (loading) {
       <div class="d-flex w-100 justify-content-center align-items-center p-4">
-        <div class="loader">
-        </div>
+        <div class="loader"></div>
       </div>
     }
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="modal fade" id="carModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-labelledby="carModal" aria-hidden="false">
+  </div>
+  
+  <div class="modal fade" id="carModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="carModal" aria-hidden="true"  (hidden.bs.modal)="carForm.reset()">
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" >Add Brand</h1>
+          <h1 class="modal-title fs-5">Add Car</h1>
           <button type="button" class="btn-close closeModel d-flex justify-content-center align-items-center" data-bs-dismiss="modal" aria-label="Close">
-            <i class="fas fa-close fs-5 "></i>
+            <i class="fas fa-close fs-5"></i>
           </button>
         </div>
         <div class="modal-body">
-            <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
-
-                <div class="position-relative mb-3">
-                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="name" type="text" >
-                    <label id="label-input">Car Name</label>
-                    @if (carForm.get('name')?.invalid && carForm.get('name')?.touched ) {
-                        <div  class="error">
-                            Name is required.
-                          </div>
-                    }
-                </div>
-       
-                <div class="position-relative mb-3">
-                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="price_day" type="number" >
-                    <label id="label-input">Price in Day</label>
-                    @if (carForm.get('price_day')?.invalid && carForm.get('price_day')?.touched ) {
-                        <div  class="error">
-                            Price  Day is required.
-                          </div>
-                    }
-                </div>
-           
-                <div class="position-relative mb-3">
-                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="price_week" type="number" >
-                    <label id="label-input">Price in Week</label>
-                    @if (carForm.get('price_week')?.invalid && carForm.get('price_week')?.touched ) {
-                        <div  class="error">
-                            Price  Week is required.
-                          </div>
-                    }
-                </div>
-           
-                <div class="position-relative mb-3">
-                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="Price_month" type="number" >
-                    <label id="label-input">Price in Month</label>
-                    @if (carForm.get('Price_month')?.invalid && carForm.get('Price_month')?.touched ) {
-                        <div  class="error">
-                            Price  Month is required.
-                          </div>
-                    }
-                </div>
-            
-                <div class="position-relative mb-3">
-                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="color" type="text" >
-                    <label id="label-input"> Color </label>
-                    @if (carForm.get('color')?.invalid && carForm.get('color')?.touched ) {
-                        <div  class="error">
-                            Color is required.
-                          </div>
-                    }
-                </div>
-             
-                <div class="position-relative mb-3">
-                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="brand" type="text" >
-                    <label id="label-input"> Brand </label>
-                    @if (carForm.get('brand')?.invalid && carForm.get('brand')?.touched ) {
-                        <div  class="error">
-                            Brand is required.
-                          </div>
-                    }
-                </div>
-                          
-                <div class="position-relative mb-3">
-                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="chair_num" type="number" >
-                    <label id="label-input"> Chiar Number </label>
-                    @if (carForm.get('chair_num')?.invalid && carForm.get('chair_num')?.touched ) {
-                        <div  class="error">
-                            Chiar Number is required.
-                          </div>
-                    }
-                </div>
-                <div class="position-relative mb-3">
-                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="door_num" type="number" >
-                    <label id="label-input"> Door Number </label>
-                    @if (carForm.get('door_num')?.invalid && carForm.get('door_num')?.touched ) {
-                        <div  class="error">
-                            Door Number is required.
-                          </div>
-                    }
-                </div>
-                <div class="position-relative mb-3">
-                    <input class="input-cal input-base inputFloating" placeholder=""  formControlName="type" type="text" >
-                    <label id="label-input"> Type Number </label>
-                    @if (carForm.get('type')?.invalid && carForm.get('type')?.touched ) {
-                        <div  class="error">
-                            Type Number is required.
-                          </div>
-                    }
-                </div>
-                <div class="mb-3">
-                             
-                    <label   class="form-label" for="image"> Brand Photo</label>
-                    <input class="form-control"  id="image" formControlName="Image" type="file"  multiple />
-                    @if (carForm.get('Image')?.invalid && carForm.get('Image')?.touched ) {
-                        <div  class="error">
-                            Image URL is required.
-                          </div>
-                    }
-               
-                  
-                </div>
-
-                <div class="modal-footer px-0 mx-0">
-                    <button type="submit"  class="btn  btnModal "[disabled]="loading || carForm.invalid">
-                        @if(!loading){
-                            <span>Add Car</span>
-                        }
-                        @if(loading){
-                            <div  class="loading">
-                                Loading...
-                              </div>
-                        }
-                    </button>
-    
-                    <button type="button" class="btn btnModal" data-bs-dismiss="modal">Close</button>
-
-                </div>
-
-              </form>
-              
+          <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+            <div class="my-3">
+              <label for="file-input" class="drop-container">
+                <span class="drop-title">Drop files here</span>
+                or
+                <input type="file" accept="image/*" required="" id="file-input" formControlName="images" multiple (change)="onFileSelect($event)" />
+              </label>
+              @if (carForm.get('images')?.invalid && carForm.get('images')?.touched ) {
+                <div class="error">Image URL is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="name" type="text" />
+              <label id="label-input">Car Name</label>
+              @if (carForm.get('name')?.invalid && carForm.get('name')?.touched ) {
+                <div class="error">Name is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="price_day" type="number" min="1" />
+              <label id="label-input">Price in Day</label>
+              @if (carForm.get('price_day')?.invalid && carForm.get('price_day')?.touched ) {
+                <div class="error">Price Day is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="price_week" type="number" min="1" />
+              <label id="label-input">Price in Week</label>
+              @if (carForm.get('price_week')?.invalid && carForm.get('price_week')?.touched ) {
+                <div class="error">Price Week is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="price_month" type="number" min="1" />
+              <label id="label-input">Price in Month</label>
+              @if (carForm.get('price_month')?.invalid && carForm.get('price_month')?.touched ) {
+                <div class="error">Price Month is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="color" type="text" />
+              <label id="label-input">Color</label>
+              @if (carForm.get('color')?.invalid && carForm.get('color')?.touched ) {
+                <div class="error">Color is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <select class="input-cal input-base inputFloating" formControlName="brand" [ngClass]="{'is-invalid': carForm.get('brand')?.invalid && carForm.get('brand')?.touched }">
+                <option value="" disabled selected>Choose a brand</option>
+                @for (brand of brandData; track brand.id) {
+                  <option [value]="brand.name">{{ brand.name }}</option>
+                }
+              </select>
+              <label id="label-input">Brand</label>
+              @if (carForm.get('brand')?.invalid && carForm.get('brand')?.touched ) {
+                <div class="error">Brand is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <select class="input-cal input-base inputFloating" formControlName="body" [ngClass]="{'is-invalid': carForm.get('body')?.invalid && carForm.get('body')?.touched }">
+                <option value="" disabled selected>Choose a Body</option>
+                @for (body of bodyData; track body.id) {
+                  <option [value]="body.name">{{ body.name }}</option>
+                }
+              </select>
+              <label id="label-input">Body</label>
+              @if (carForm.get('body')?.invalid && carForm.get('body')?.touched ) {
+                <div class="error">Body is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="chair_num" type="number" min="1" />
+              <label id="label-input">Chair Number</label>
+              @if (carForm.get('chair_num')?.invalid && carForm.get('chair_num')?.touched ) {
+                <div class="error">Chair Number is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="door_num" type="number" min="1" />
+              <label id="label-input">Door Number</label>
+              @if (carForm.get('door_num')?.invalid && carForm.get('door_num')?.touched ) {
+                <div class="error">Door Number is required.</div>
+              }
+            </div>
+            <div class="modal-footer px-0 mx-0">
+              <button type="submit" class="btn btnModal" [disabled]="loading || carForm.invalid">
+                @if(!loading){
+                  <span>Add Car</span>
+                }
+                @if(loading){
+                  <div class="loading">Loading...</div>
+                }
+              </button>
+              <button type="button" class="btn btnModal" data-bs-dismiss="modal">Close</button>
+            </div>
+          </form>
         </div>
-    
+      </div>
+    </div>
+  </div>
+  
+
+
+  <!-- Popup Edit -->
+  <div class="modal fade" id="carModalEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="carModalEdit"  aria-hidden="true"  (hidden.bs.modal)="carForm.reset()">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Edit Car</h1>
+          <button type="button" class="btn-close closeModel d-flex justify-content-center align-items-center" data-bs-dismiss="modal" aria-label="Close">
+            <i class="fas fa-close fs-5"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="my-3">
+            <img [src]="editImage" alt="" width="100%" height="200" class="rounded-3" />
+          </div>
+          <form [formGroup]="carForm" (ngSubmit)="onEditSubmit()">
+            <div class="my-3">
+              <label for="file-input" class="drop-container">
+                <span class="drop-title">Drop files here</span>
+                or
+                <input type="file" accept="image/*" required="" id="file-input" value="" formControlName="images" multiple (change)="onFileSelect($event)" />
+              </label>
+              @if (carForm.get('images')?.invalid && carForm.get('images')?.touched ) {
+                <div class="error">Image URL is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="name" type="text" />
+              <label id="label-input">Car Name</label>
+              @if (carForm.get('name')?.invalid && carForm.get('name')?.touched ) {
+                <div class="error">Name is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="price_day" type="number" min="1" />
+              <label id="label-input">Price in Day</label>
+              @if (carForm.get('price_day')?.invalid && carForm.get('price_day')?.touched ) {
+                <div class="error">Price Day is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="price_week" type="number" min="1" />
+              <label id="label-input">Price in Week</label>
+              @if (carForm.get('price_week')?.invalid && carForm.get('price_week')?.touched ) {
+                <div class="error">Price Week is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="price_month" type="number" min="1" />
+              <label id="label-input">Price in Month</label>
+              @if (carForm.get('price_month')?.invalid && carForm.get('price_month')?.touched ) {
+                <div class="error">Price Month is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="color" type="text" />
+              <label id="label-input">Color</label>
+              @if (carForm.get('color')?.invalid && carForm.get('color')?.touched ) {
+                <div class="error">Color is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <select class="input-cal input-base inputFloating" formControlName="brand" [ngClass]="{'is-invalid': carForm.get('brand')?.invalid && carForm.get('brand')?.touched }">
+                <option value="" disabled selected>Choose a brand</option>
+                @for (brand of brandData; track brand.id) {
+                  <option [value]="brand.name">{{ brand.name }}</option>
+                }
+              </select>
+              <label id="label-input">Brand</label>
+              @if (carForm.get('brand')?.invalid && carForm.get('brand')?.touched ) {
+                <div class="error">Brand is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <select class="input-cal input-base inputFloating" formControlName="body" [ngClass]="{'is-invalid': carForm.get('body')?.invalid && carForm.get('body')?.touched }">
+                <option value="" disabled selected>Choose a Body</option>
+                @for (body of bodyData; track body.id) {
+                  <option [value]="body.name">{{ body.name }}</option>
+                }
+              </select>
+              <label id="label-input">Body</label>
+              @if (carForm.get('body')?.invalid && carForm.get('body')?.touched ) {
+                <div class="error">Body is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="chair_num" type="number" min="1" />
+              <label id="label-input">Chair Number</label>
+              @if (carForm.get('chair_num')?.invalid && carForm.get('chair_num')?.touched ) {
+                <div class="error">Chair Number is required.</div>
+              }
+            </div>
+            <div class="position-relative mb-4">
+              <input class="input-cal input-base inputFloating" placeholder="" formControlName="door_num" type="number" min="1" />
+              <label id="label-input">Door Number</label>
+              @if (carForm.get('door_num')?.invalid && carForm.get('door_num')?.touched ) {
+                <div class="error">Door Number is required.</div>
+              }
+            </div>
+            <div class="modal-footer px-0 mx-0">
+              <button type="submit" class="btn btnModal" [disabled]="loading || carForm.invalid">
+                @if(!loading){
+                  <span>Update Car</span>
+                }
+                @if(loading){
+                  <div class="loading">Loading...</div>
+                }
+              </button>
+              <button type="button" class="btn btnModal" data-bs-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
