@@ -1,3 +1,149 @@
+.inputSearch {
+  padding: 6px 14px;
+  width: 200px;
+  background-color: transparent;
+  border: 0.5px solid #bc792b;
+  outline: none;
+  border-radius: 10px;
+
+}
+.btn {
+  color: #fff;
+  border-radius: 10px;
+  margin: 0 10px;
+}
+.btnsearch {
+  background-color: #b88e2f;
+
+  color: #fff;
+  border-radius: 10px;
+  margin: 0 10px;
+  padding: 5px 20px ;
+}
+
+
+.headerCar h2{
+  color: #bc792b;
+  font-family: "Poppins", Sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.7em;
+}
+.cardCar{
+  
+  border: none;
+  border-radius: 20px;
+  width: 350px !important;
+}
+.cardCar img{
+  border-radius: 15px;
+  width: 100%;
+  height: 210px !important;
+  object-fit: contain;
+
+}
+.notFound{
+display: flex;
+justify-content: center;
+flex-direction: column;
+gap: 30px;
+align-items: center;
+width: 100%;
+}
+.notFound h3{
+color: #bc792b;
+font-family: "Poppins", Sans-serif;
+font-size: 30px;
+font-weight: 600;
+line-height: 1.7em;
+}
+.notFound img{
+
+width: 400px;
+} 
+.Content h2{
+   
+  color: #000;
+  font-family: "Poppins", Sans-serif;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.7em;
+}
+.Content h4{
+  color: #bc792b;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 8px 0;
+}
+.Content h5{
+color: #222;
+font-size: 14px;
+font-weight: 500;
+margin: 8px 0;
+}
+.Content p span{
+color: #bc792b;
+font-size: 16px;
+font-weight: 500;
+margin: 8px 0;
+}
+.icons p i{
+  color: #fff;
+  padding: 5px;
+  background-color: #bc792b;
+  border-radius: 5px;
+}
+.allCars .btn{
+  background-color: #bc792b;
+  padding: 10px 30px;
+  color: #fff;
+  outline: none;
+  border-radius: 7px;
+}
+.contact .iconContact{
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #bc792b;
+  width: 50px;
+  height: 50px;
+
+}
+.contact .iconContact i{
+font-size: 20px;
+color: #fff;
+
+}
+.iconContact{
+  cursor: pointer;
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  background: var(--brown);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  width: 12px;
+  height: 12px;
+  color: var(--white);
+  background: currentColor;
+  border-radius: 50%;
+  box-shadow: 25px 2px, 10px 22px;
+}
+
+
 .closeModel{
   padding: 10px;
   background-color: var(--brown);
@@ -73,230 +219,109 @@
   box-shadow: none !important;
 
 }
-
-.inputSearch {
-padding: 6px 14px;
-width: 200px;
-background-color: transparent;
-border: 0.5px solid #bc792b;
-outline: none;
-border-radius: 10px;
-
-}
-.btn {
-color: #fff;
-border-radius: 10px;
-margin: 0 10px;
-}
-.btnsearch {
-background-color: #b88e2f;
-
-color: #fff;
-border-radius: 10px;
-margin: 0 10px;
-padding: 5px 20px ;
+.form-paragraph {
+font-size: 0.9375rem;
+color: rgb(105, 105, 105);
 }
 
-
-.headerCar h2{
-color: #bc792b;
-font-family: "Poppins", Sans-serif;
-font-size: 30px;
-font-weight: 600;
-line-height: 1.7em;
-}
-.cardCar{
-
-border: none;
-border-radius: 20px;
-width: 350px !important;
-}
-.cardCar img{
-border-radius: 15px;
-width: 100%;
-
-}
-
-.Content h2{
- 
-color: #000;
-font-family: "Poppins", Sans-serif;
-font-size: 21px;
-font-weight: 600;
-line-height: 1.7em;
-}
-.Content h5{
-color: #bc792b;
-font-size: 18px;
-font-weight: 500;
-margin: 8px 0;
-}
-.icons p i{
-color: #fff;
-padding: 5px;
-background-color: #bc792b;
-border-radius: 5px;
-}
-.allCars .btn{
-background-color: #bc792b;
-padding: 10px 30px;
-color: #fff;
-outline: none;
-border-radius: 7px;
-}
-.contact .iconContact{
-padding: 10px;
-border-radius: 50%;
+.drop-container {
+background-color: #fff;
+position: relative;
 display: flex;
+gap: 10px;
+flex-direction: column;
 justify-content: center;
 align-items: center;
-background-color: #bc792b;
-width: 50px;
-height: 50px;
-
-}
-.contact .iconContact i{
-font-size: 20px;
-color: #fff;
-
-}
-.iconContact{
+padding: 10px;
+border-radius: 10px;
+border: 2px dashed var(--brown);
+color: #444;
 cursor: pointer;
-}
-.loader {
-width: 48px;
-height: 48px;
-background: var(--brown);
-border-radius: 50%;
-display: inline-block;
-position: relative;
-box-sizing: border-box;
-animation: rotation 1s linear infinite;
-}
-.loader::after {
-content: '';  
-box-sizing: border-box;
-position: absolute;
-left: 6px;
-top: 10px;
-width: 12px;
-height: 12px;
-color: var(--white);
-background: currentColor;
-border-radius: 50%;
-box-shadow: 25px 2px, 10px 22px;
+transition:  border-color .2s ease-in-out, border .2s ease-in-out;
 }
 
+.drop-container:hover {
+background-color: #b88f2f2e;
 
-.closeModel{
-padding: 10px;
+border-color:var(--brown2);
+}
+
+.drop-container:hover .drop-title {
+color: #222;
+}
+
+.drop-title {
+color: #444;
+font-size: 20px;
+font-weight: bold;
+text-align: center;
+transition: color .2s ease-in-out;
+}
+
+#file-input {
+width: 350px;
+max-width: 100%;
+color: #444;
+padding: 2px;
+background: #fff;
+border-radius: 10px;
+border: 1px solid rgba(8, 8, 8, 0.288);
+}
+
+#file-input::file-selector-button {
+margin-right: 20px;
+border: none;
 background-color: var(--brown);
-opacity: 1;
-}
-.closeModel i{
-color: white;
-}
-.btnModal{
 padding: 10px 20px;
-background-color: var(--brown);
-box-shadow: none;
-border: 1px solid var(--fwhite);
-color: white;
-
-}
-.btnModal:focus{
-border: 1px solid var(--brown);
-}
-.btn-close{
-background: var(--brown);
+border-radius: 10px;
+color: #fff;
+cursor: pointer;
+transition: background-color .2s ease-in-out;
 }
 
-.relative {
-position: relative;
+#file-input::file-selector-button:hover {
+background-color: var(--brown2);
 }
-
-#label-input {
-transition: all 0.1s ease-in-out;
-position: absolute;
-top: 30%;
-left: 18px;
-transform: scale(0.95);
-opacity: 1;
-pointer-events: none;
-color: #5f5d5dee;
-}
-
-.input-base {
-border-radius: 6px;
-}
-
-.inputFloating:focus ~ label#label-input,
-.inputFloating:not(:placeholder-shown) ~ #label-input {
-top: -27% !important;
-left: 4px !important;
-transform: scale(0.8);
-background: white;
-color: var(--gray2);
-font-size: 16px;
-padding: 0px 18px;
-opacity: 1;
-}
-
-.inputFloating {
-transition: outline 0.2s ease;
-font-size: 1rem;
-outline-color: var(--button-text);
-outline: unset;
-border: 1px solid var(--gray1);
-padding: 17px 10px 10px 17px;
-width: 100%;
-
-border-radius: 8px ;
-
-
-}
-
-
-.form-control:focus{
-padding: 10px;
-border: 1px solid var(--gray2)  !important;
-box-shadow: none !important;
-
-}
-
 @keyframes rotation {
-0% {
-  transform: rotate(0deg);
-}
-100% {
-  transform: rotate(360deg);
-}
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 @media (max-width: 600px) {
-.headerCar {
-    flex: none;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-.sealct{
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px;
-}
-.cardCar{
+  .headerCar {
+      flex: none;
+      flex-wrap: wrap;
+      gap: 20px;
+  }
+  .sealct{
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px;
+  }
+  .cardCar{
+  
+      border: none;
+      border-radius: 20px;
+      width: 100% !important;
+  }
 
-    border: none;
-    border-radius: 20px;
-    width: 100% !important;
-}
-.infoShow{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-.car{
-    padding: 10px !important;
-}
+
+  .infoShow{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+  }
+  .car{
+      padding: 10px !important;
+  }
+
+  .notFound img{
+
+    width: 90%;
+  }
 }

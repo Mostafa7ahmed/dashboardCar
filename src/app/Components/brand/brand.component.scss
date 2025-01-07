@@ -1,79 +1,3 @@
-.closeModel{
-    padding: 10px;
-    background-color: var(--brown);
-    opacity: 1;
-}
-.closeModel i{
-    color: white;
-}
-.btnModal{
-    padding: 10px 20px;
-    background-color: var(--brown);
-    box-shadow: none;
-    border: 1px solid var(--fwhite);
-    color: white;
-
-}
-.btnModal:focus{
-    border: 1px solid var(--brown);
-}
-.btn-close{
-    background: var(--brown);
-}
-
-.relative {
-    position: relative;
-  }
-  
-  #label-input {
-    transition: all 0.1s ease-in-out;
-    position: absolute;
-    top: 30%;
-    left: 18px;
-    transform: scale(0.95);
-    opacity: 1;
-    pointer-events: none;
-    color: #5f5d5dee;
-  }
-  
-  .input-base {
-    border-radius: 6px;
-  }
-  
- .inputFloating:focus ~ label#label-input,
-.inputFloating:not(:placeholder-shown) ~ #label-input {
-    top: -27% !important;
-    left: 4px !important;
-    transform: scale(0.8);
-    background: white;
-    color: var(--gray2);
-    font-size: 16px;
-    padding: 0px 18px;
-    opacity: 1;
-  }
-  
-  .inputFloating {
-    transition: outline 0.2s ease;
-    font-size: 1rem;
-    outline-color: var(--button-text);
-    outline: unset;
-    border: 1px solid var(--gray1);
-    padding: 17px 10px 10px 17px;
-    width: 100%;
-
-    border-radius: 8px ;
-
-
-  }
-
-  
-.form-control:focus{
-    padding: 10px;
-    border: 1px solid var(--gray2)  !important;
-    box-shadow: none !important;
-
-}
-
 .inputSearch {
   padding: 6px 14px;
   width: 200px;
@@ -114,9 +38,29 @@
 .cardCar img{
   border-radius: 15px;
   width: 100%;
+  height: 210px !important;
+  object-fit: contain;
 
 }
+.notFound{
+display: flex;
+justify-content: center;
+flex-direction: column;
+gap: 30px;
+align-items: center;
+width: 100%;
+}
+.notFound h3{
+color: #bc792b;
+font-family: "Poppins", Sans-serif;
+font-size: 30px;
+font-weight: 600;
+line-height: 1.7em;
+}
+.notFound img{
 
+width: 400px;
+} 
 .Content h2{
    
   color: #000;
@@ -125,11 +69,23 @@
   font-weight: 600;
   line-height: 1.7em;
 }
-.Content h5{
+.Content h4{
   color: #bc792b;
   font-size: 18px;
   font-weight: 500;
   margin: 8px 0;
+}
+.Content h5{
+color: #222;
+font-size: 14px;
+font-weight: 500;
+margin: 8px 0;
+}
+.Content p span{
+color: #bc792b;
+font-size: 16px;
+font-weight: 500;
+margin: 8px 0;
 }
 .icons p i{
   color: #fff;
@@ -263,7 +219,69 @@ color: #fff;
   box-shadow: none !important;
 
 }
+.form-paragraph {
+font-size: 0.9375rem;
+color: rgb(105, 105, 105);
+}
 
+.drop-container {
+background-color: #fff;
+position: relative;
+display: flex;
+gap: 10px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 10px;
+border-radius: 10px;
+border: 2px dashed var(--brown);
+color: #444;
+cursor: pointer;
+transition:  border-color .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover {
+background-color: #b88f2f2e;
+
+border-color:var(--brown2);
+}
+
+.drop-container:hover .drop-title {
+color: #222;
+}
+
+.drop-title {
+color: #444;
+font-size: 20px;
+font-weight: bold;
+text-align: center;
+transition: color .2s ease-in-out;
+}
+
+#file-input {
+width: 350px;
+max-width: 100%;
+color: #444;
+padding: 2px;
+background: #fff;
+border-radius: 10px;
+border: 1px solid rgba(8, 8, 8, 0.288);
+}
+
+#file-input::file-selector-button {
+margin-right: 20px;
+border: none;
+background-color: var(--brown);
+padding: 10px 20px;
+border-radius: 10px;
+color: #fff;
+cursor: pointer;
+transition: background-color .2s ease-in-out;
+}
+
+#file-input::file-selector-button:hover {
+background-color: var(--brown2);
+}
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -289,6 +307,8 @@ color: #fff;
       border-radius: 20px;
       width: 100% !important;
   }
+
+
   .infoShow{
       display: flex;
       justify-content: center;
@@ -298,5 +318,10 @@ color: #fff;
   }
   .car{
       padding: 10px !important;
+  }
+
+  .notFound img{
+
+    width: 90%;
   }
 }

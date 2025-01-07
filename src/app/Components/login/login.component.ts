@@ -36,7 +36,8 @@ export class LoginComponent {
       const { data, error } = await this._loginService.signIn(email, password);
       if (error) {
         this.message = error.message;
-        console.log(this.message)
+        this._ToastsService.showToast("error",this.message)
+
 
 
       } else {
@@ -47,6 +48,8 @@ export class LoginComponent {
       }
     } catch (err) {
       this.message = 'An unexpected error occurred.';
+      this._ToastsService.showToast("error",this.message)
+
     } finally {
       this.isLoading = false;
     }

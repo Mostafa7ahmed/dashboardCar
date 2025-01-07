@@ -1,59 +1,63 @@
-<div class="car p-5 bg-light m-4 shadow-sm rounded-4">
-    <div class="infoShow d-flex justify-content-between align-items-center my-4">
+<div class="car  bg-light m-4 shadow-sm rounded-4">
+    <div class="infoShow d-flex justify-content-between align-items-center my-4 p-4">
 
         <div class="SearchUser d-flex justify-content-between align-items-center text-center">
-            <input type="text" class="inputSearch" placeholder="ُEnter Name Car  Search " />
+            <input type="text" class="inputSearch" placeholder="ُEnter Name Car  Search "  [(ngModel)]="textSearch"/>
         </div>
 
 
-        <button class="btn btnModal" type="button" data-bs-toggle="modal" data-bs-target="#carModal">Add Body <i class="fa-solid fa-plus"></i> </button>
+        <button class="btn btnModal" type="button" data-bs-toggle="modal" data-bs-target="#BodyModal">Add Brand <i class="fa-solid fa-plus"></i> </button>
 
 
 
     </div>
 
 
-    @if(!isLoading){
-        <div class="allcars d-flex   p-3  flex-wrap gap-2 my-5">
-            @for (brantcar of brantcars; track brantcar._id) {
-                <div class="cardCar shadow-sm  mb-3   p-3">
-                    <img src="Images/Q3-x1-qygadzafd20tzx0bj6vykwr33j4lptq80h7x7q2r98.webp" alt="">
-        
-                    <div class="Content  p-3">
-                        <h2>Mitsubishi Outlander 2024</h2>
-        
-               
-        
-                        <div class="contact  py-3 d-flex justify-content-between align-items-center">
-                            <a routerLink="/car-details" class="iconContact">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-        
-                            <a routerLink="/car-details" class="iconContact">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
+    @if(!loading){
+        @if(bodys.length >0){
+            <div class="allcars d-flex   p-3  flex-wrap gap-2 my-5">
+                @for (brand of bodys |search : textSearch; track brand.id) {
+                    <div class="cardCar shadow-sm  mb-3 bg-white  p-3">
+                        <img [src]="brand.image" alt="" class="rounded-3" />
+            
+                        <div class="Content  p-3">
+                            <h4>{{brand.name}}</h4>
+            
+                   
+            
+                            <div class="contact  py-3 d-flex justify-content-between align-items-center">
+                                <a routerLink="/car-details" class="iconContact">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+            
+                                <a (click)="onDeleteBody(brand.id)" class="iconContact">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </div>
                         </div>
+            
                     </div>
+                  
+                }
         
-                </div>
-              
-            }
-       
-         
-    
-    
-    
-    
-        </div>
-    
+            </div>
+        
+        }
+        @else {
+            <div class="notFound">
+              <img src="Images/order-a-car.png" alt="" />
+              <h3>Not Found Car</h3>
+            </div>
+          }
     }
-    @if (isLoading) {
+    @if (loading) {
         <div class="d-flex w-100 justify-content-center align-items-center p-4">
           <div class="loader">
           </div>
         </div>
       }
   
+
 </div>
 
 
@@ -62,49 +66,48 @@
 
 
 
-<div class="modal fade" id="carModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-labelledby="carModal" aria-hidden="false">
+<div class="modal fade" id="BodyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-labelledby="BodyModal" aria-hidden="false">
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" >Add Body</h1>
+          <h1 class="modal-title fs-5" >Add Brand</h1>
           <button type="button" class="btn-close closeModel d-flex justify-content-center align-items-center" data-bs-dismiss="modal" aria-label="Close">
             <i class="fas fa-close fs-5 "></i>
           </button>
         </div>
         <div class="modal-body">
-            <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="BodyForm" (ngSubmit)="onSubmit()">
+                <div class="my-3">
+                    <label for="file-input" class="drop-container">
+                      <span class="drop-title">Drop files here</span>
+                      or
+                      <input type="file" accept="image/*"  id="file-input" formControlName="image" multiple (change)="onFileSelect($event)" />
+                    </label>
+                    @if (BodyForm.get('image')?.invalid && BodyForm.get('image')?.touched ) {
+                      <div class="error">Image URL is required.</div>
+                    }
+                  </div>
 
                 <div class="position-relative mb-3">
                     <input class="input-cal input-base inputFloating" placeholder=""  formControlName="name" type="text"  formControlName="name">
-                    <label id="label-input">Car Name</label>
+                    <label id="label-input">Brand Name</label>
        
                 </div>
-                @if (carForm.get('name')?.invalid && carForm.get('name')?.touched ) {
+                @if (BodyForm.get('name')?.invalid && BodyForm.get('name')?.touched ) {
                     <div  class="error">
                         Name is required.
                       </div>
                 }
         
 
-                <div class="mb-3">
-                             
-                    <label   class="form-label" for="image"> Car Photo</label>
-                    <input class="form-control"  id="image" formControlName="image" type="file"  multiple />
-                    @if (carForm.get('image')?.invalid && carForm.get('image')?.touched ) {
-                        <div  class="error">
-                            Image URL is required.
-                          </div>
-                    }
-               
-                  
-                </div>
+
 
                 <div class="modal-footer px-0 mx-0">
-                    <button type="submit"  class="btn  btnModal "[disabled]="isLoading || carForm.invalid">
-                        @if(!isLoading){
-                            <span>Add Car</span>
+                    <button type="submit"  class="btn  btnModal "[disabled]="loading || BodyForm.invalid">
+                        @if(!loading){
+                            <span>Add Brand</span>
                         }
-                        @if(isLoading){
+                        @if(loading){
                             <div  class="loading">
                                 Loading...
                               </div>

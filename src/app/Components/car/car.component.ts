@@ -47,7 +47,7 @@ export class CarComponent implements OnInit {
       body: ['', Validators.required],
       chair_num: ['', Validators.required],
       door_num: ['', Validators.required],
-      images: ['', Validators.required],
+      images: [''],
     });
   }
 
@@ -58,8 +58,6 @@ export class CarComponent implements OnInit {
       this.carForm.patchValue({
         images: file
       });
-
-      
     }
     
   }
@@ -93,14 +91,10 @@ export class CarComponent implements OnInit {
   // تحميل بيانات السيارة للتعديل
   async loadCarData(carId: number) {
     this.carIdToEdit = carId;
-    this.GetData(); // تحميل البيانات الإضافية (العلامات التجارية والهياكل)
-    try {
-      // جلب بيانات السيارة بواسطة الـ ID
+    this.GetData();
+     try {
       const car = await this.supabaseService.getCar(carId);
-
-      // تعيين الصورة الحالية للعرض
       this.editImage = car.images;
-
       this.carForm.setValue({
         name: car.name,
         price_day: car.price_day,
@@ -113,37 +107,27 @@ export class CarComponent implements OnInit {
         door_num: car.door_num,
         images: car.images,
       });
-
-      // تعيين معرف السيارة للتعديل
       this.carIdToEdit = carId;
     } catch (error) {
       console.error('Unexpected error:', error);
     }
   }
 
-  // تحديث بيانات السيارة
   async onEditSubmit() {
     this.loading = true;
-
     if (this.carForm.valid) {
+
       const updatedCar = this.carForm.value;
       if (this.carIdToEdit !== null && this.carIdToEdit !== undefined) {
         try {
-          // تحديث بيانات السيارة
           await this.supabaseService.updateCar(this.carIdToEdit, updatedCar);
-
-          // عرض رسالة نجاح
           this.submissionMessage = 'Car updated successfully';
           this._ToastsService.showToast("success", this.submissionMessage);
-
-          // إغلاق النافذة المنبثقة
           const modalElement = document.getElementById('carModalEdit');
           if (modalElement) {
             const modalInstance = bootstrap.Modal.getInstance(modalElement);
             modalInstance.hide();
           }
-
-          // إعادة تحميل بيانات السيارات
           this.loading = false;
 
           await this.loadDataCar();
@@ -168,12 +152,12 @@ export class CarComponent implements OnInit {
 
   // تحميل بيانات الهياكل
   async loadDataBody() {
-    this.bodyData = await this._BodyService.getBody();
+    this.bodyData = await this._BodyService.getTableData();
   }
 
   // تحميل بيانات العلامات التجارية
   async loadDatabrand() {
-    this.brandData = await this._BrandService.getcar();
+    this.brandData = await this._BrandService.getTableData();
   }
 
   // حذف سيارة
